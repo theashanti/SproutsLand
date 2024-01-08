@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://ds385gny3o2e5"]
+
+[ext_resource type="Script" path="res://Levels/MainMenu.gd" id="1_r5wa0"]
+[ext_resource type="Theme" uid="uid://dlymgcmh1qtgd" path="res://Global/UI/Default.tres" id="2_2r2sj"]
+[ext_resource type="Texture2D" uid="uid://b55qksmfk275s" path="res://Art/Background (1).png" id="2_auxix"]
+[ext_resource type="Theme" uid="uid://cx54vgvxtedkw" path="res://Global/UI/Exit.tres" id="4_727mq"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_r5wa0")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -19.0
+offset_top = -1.0
+offset_right = 530.0
+offset_bottom = 302.0
+texture = ExtResource("2_auxix")
+expand_mode = 1
+
+[node name="Play" type="Button" parent="."]
+offset_left = 201.0
+offset_top = 220.0
+offset_right = 319.0
+offset_bottom = 252.0
+theme = ExtResource("2_2r2sj")
+
+[node name="Exit" type="Button" parent="."]
+custom_minimum_size = Vector2(25, 25)
+offset_left = 483.0
+offset_top = 7.0
+offset_right = 508.0
+offset_bottom = 33.0
+theme = ExtResource("4_727mq")
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="button_down" from="Exit" to="." method="_on_exit_button_down"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

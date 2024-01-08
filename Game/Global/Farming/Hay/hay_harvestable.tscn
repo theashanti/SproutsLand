@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dn0853gnvt26o"]
+
+[ext_resource type="Texture2D" uid="uid://by70w738o5yov" path="res://Art/Sprout Lands - Sprites - Basic pack/Objects/Basic Plants.png" id="1_vi8of"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnq73"]
+atlas = ExtResource("1_vi8of")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i4aet"]
+radius = 5.0
+
+[node name="HayStage4" type="StaticBody2D"]
+collision_layer = 513
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_jnq73")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_i4aet")

@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0aqi5xfioh6n"]
+
+[ext_resource type="Texture2D" uid="uid://by70w738o5yov" path="res://Art/Sprout Lands - Sprites - Basic pack/Objects/Basic Plants.png" id="1_mhr1x"]
+[ext_resource type="Script" path="res://Global/Farming/ageing_component.gd" id="2_yxv6j"]
+[ext_resource type="PackedScene" uid="uid://kwwjovnr0yem" path="res://Global/Farming/Hay/hay_growth_4.tscn" id="3_4llnd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnq73"]
+atlas = ExtResource("1_mhr1x")
+region = Rect2(49, 1, 15, 14)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6coxu"]
+radius = 5.0
+
+[node name="HayStage3" type="StaticBody2D"]
+collision_layer = 513
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+texture = SubResource("AtlasTexture_jnq73")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6coxu")
+
+[node name="Ageing Component" type="Node" parent="."]
+script = ExtResource("2_yxv6j")
+age_threshold = 3.0
+next_scene = ExtResource("3_4llnd")

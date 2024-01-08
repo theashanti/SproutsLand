@@ -1,0 +1,127 @@
+[gd_scene load_steps=16 format=3 uid="uid://bpfbwq0preexx"]
+
+[ext_resource type="Texture2D" uid="uid://drs0ounpfsjj8" path="res://Art/Sprout Lands - UI Pack - Basic pack/Sprite sheets/Sprite sheet for Basic Pack.png" id="1_h5ds1"]
+[ext_resource type="Theme" uid="uid://dgu5s0upabswl" path="res://Global/UI/Home.tres" id="2_5r1s0"]
+[ext_resource type="Script" path="res://Global/ageing_component.gd" id="2_72pti"]
+[ext_resource type="Texture2D" uid="uid://vpjafmd7r4ns" path="res://Art/clock_icon.png" id="3_c1vpb"]
+[ext_resource type="Theme" uid="uid://davf7yf1tanok" path="res://Global/UI/panel.tres" id="4_pjjhk"]
+[ext_resource type="Theme" uid="uid://b4wgp2nnbllrt" path="res://Global/UI/Sound.tres" id="5_m2woy"]
+[ext_resource type="Script" path="res://Global/Sound.gd" id="6_xj0b1"]
+[ext_resource type="AudioStream" uid="uid://biscbju8m44ow" path="res://Sound/merry-farm-127398.mp3" id="7_tiywt"]
+[ext_resource type="Texture2D" uid="uid://coxfcct3gm3tr" path="res://Art/Sound_Icon.png" id="8_psh04"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4sikh"]
+texture = ExtResource("1_h5ds1")
+region_rect = Rect2(343, 38, 18, 19)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4ckys"]
+texture = ExtResource("1_h5ds1")
+region_rect = Rect2(375, 40, 18, 17)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2asxs"]
+texture = ExtResource("1_h5ds1")
+region_rect = Rect2(375, 40, 18, 17)
+
+[sub_resource type="GDScript" id="GDScript_1ekko"]
+script/source = "extends Button
+
+func _on_pressed():
+	get_tree().change_scene_to_file(\"res://Levels/MainMenu.tscn\")
+"
+
+[sub_resource type="GDScript" id="GDScript_uyjhc"]
+script/source = "extends Label
+
+func _process(_delta):
+	var time = Time.get_time_dict_from_system()
+	var date = Time.get_datetime_dict_from_system()
+	
+	self.text = \"Time: \" + str(time[\"hour\"]) + \":\" + str(time[\"minute\"])
+	
+
+	Game.Cur_day = date[\"day\"]
+"
+
+[sub_resource type="ImageTexture" id="ImageTexture_0ppcv"]
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="AgeingButton" type="Button" parent="."]
+custom_minimum_size = Vector2(25, 25)
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 29.0
+offset_bottom = 29.0
+theme_override_colors/font_color = Color(0.768627, 0.603922, 0.423529, 1)
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxTexture_4sikh")
+theme_override_styles/hover = SubResource("StyleBoxTexture_4ckys")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2asxs")
+text = "Age"
+icon_alignment = 1
+script = ExtResource("2_72pti")
+
+[node name="ClockIcon" type="Sprite2D" parent="AgeingButton"]
+position = Vector2(12, 12)
+scale = Vector2(0.046, 0.043)
+texture = ExtResource("3_c1vpb")
+
+[node name="Home" type="Button" parent="."]
+custom_minimum_size = Vector2(25, 25)
+offset_left = 483.0
+offset_top = 7.0
+offset_right = 508.0
+offset_bottom = 33.0
+theme = ExtResource("2_5r1s0")
+script = SubResource("GDScript_1ekko")
+
+[node name="PanelDate" type="Button" parent="."]
+offset_left = 348.0
+offset_top = 6.0
+offset_right = 443.0
+offset_bottom = 34.0
+theme = ExtResource("4_pjjhk")
+theme_override_colors/font_color = Color(0.768627, 0.603922, 0.423529, 1)
+theme_override_colors/font_pressed_color = Color(0.768627, 0.603922, 0.423529, 1)
+theme_override_colors/font_hover_color = Color(0.768627, 0.603922, 0.423529, 1)
+theme_override_colors/font_focus_color = Color(0.768627, 0.603922, 0.423529, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.768627, 0.603922, 0.423529, 1)
+theme_override_colors/font_disabled_color = Color(0.768627, 0.603922, 0.423529, 1)
+theme_override_colors/font_outline_color = Color(0.768627, 0.603922, 0.423529, 1)
+theme_override_colors/icon_normal_color = Color(0.768627, 0.603922, 0.423529, 1)
+theme_override_colors/icon_pressed_color = Color(0.768627, 0.603922, 0.423529, 1)
+
+[node name="Date" type="Label" parent="."]
+offset_left = 351.0
+offset_top = 5.0
+offset_right = 441.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(0.768627, 0.603922, 0.423529, 1)
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+script = SubResource("GDScript_uyjhc")
+
+[node name="Sound" type="Button" parent="."]
+custom_minimum_size = Vector2(25, 25)
+offset_left = 450.0
+offset_top = 7.0
+offset_right = 477.0
+offset_bottom = 33.0
+theme = ExtResource("5_m2woy")
+icon = SubResource("ImageTexture_0ppcv")
+script = ExtResource("6_xj0b1")
+
+[node name="Music" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource("7_tiywt")
+volume_db = -20.0
+autoplay = true
+
+[node name="SoundIcon" type="Sprite2D" parent="Sound"]
+position = Vector2(13, 12)
+scale = Vector2(0.038, 0.039)
+texture = ExtResource("8_psh04")
+
+[connection signal="pressed" from="Home" to="Home" method="_on_pressed"]
+[connection signal="pressed" from="Sound" to="Sound" method="_on_pressed"]

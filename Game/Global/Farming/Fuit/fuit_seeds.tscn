@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnu6uoq5ton08"]
+
+[ext_resource type="Texture2D" uid="uid://by70w738o5yov" path="res://Art/Sprout Lands - Sprites - Basic pack/Objects/Basic Plants.png" id="1_s1gcv"]
+[ext_resource type="Script" path="res://Global/Farming/ageing_component.gd" id="2_utvrq"]
+[ext_resource type="PackedScene" uid="uid://cr1gn1gqkwkrt" path="res://Global/Farming/Fuit/fuit_growth_1.tscn" id="3_5gq2g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gi4ce"]
+atlas = ExtResource("1_s1gcv")
+region = Rect2(2, 18, 12, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3nv5d"]
+size = Vector2(16, 16)
+
+[node name="FuitSeeds" type="Area2D"]
+collision_layer = 512
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_gi4ce")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3nv5d")
+
+[node name="Ageing Component" type="Node" parent="."]
+script = ExtResource("2_utvrq")
+next_scene = ExtResource("3_5gq2g")
